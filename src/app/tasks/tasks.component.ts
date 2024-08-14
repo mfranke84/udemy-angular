@@ -1,11 +1,14 @@
 import { Component, Input } from '@angular/core';
 import { TaskComponent } from '../task/task.component';
+import { dummyTasks } from '../dummy-tasks';
+import { Task } from '../task/task.model';
+import { NewTaskComponent } from './new-task/new-task.component';
 
 
 @Component({
   selector: 'app-tasks',
   standalone: true,
-  imports: [TaskComponent],
+  imports: [TaskComponent, NewTaskComponent],
   templateUrl: './tasks.component.html',
   styleUrl: './tasks.component.css'
 })
@@ -13,33 +16,29 @@ export class TasksComponent {
   @Input({required: true}) id!: string;
   @Input({required: true}) name!: string;
   
-  tasks = [
-    {
-      id: 't1',
-      userId: 'u1',
-      title: 'Master Angular',
-      summary:
-        'Learn all the basic and advanced features of Angular & how to apply them.',
-      dueDate: '2025-12-31',
-    },
-    {
-      id: 't2',
-      userId: 'u3',
-      title: 'Build first prototype',
-      summary: 'Build a first prototype of the online shop website',
-      dueDate: '2024-05-11',
-    },
-    {
-      id: 't3',
-      userId: 'u3',
-      title: 'Create presentation',
-      summary: 'Create a presentation for the product',
-      dueDate: '2024-05-11',
-    }
-  ]
+  tasks = dummyTasks;
+  newTask = false;
 
   get selectedUserTasks() {
     return this.tasks.filter((task) => task.userId === this.id );
+  }
+
+  onCompleteTask(id: string){
+    this.tasks = this.tasks.filter((task) => task.id !== id )
+    
+  }
+
+  startAddingNewTask(){
+    this.newTask = true;
+    // this.tasks.push(
+    //   { 
+    //     id:  't'+ this.tasks.length++,
+    //     userId: this.id,
+    //     title: "New Task",
+    //     summary: "I did this exercise on my own",
+    //     dueDate: "2024-12-31"
+    //   }
+    // )
   }
 
 }
