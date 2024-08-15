@@ -17,7 +17,7 @@ export class TasksComponent {
   @Input({required: true}) name!: string;
   
   tasks = dummyTasks;
-  newTask = false;
+  isAddingTask = false;
 
   get selectedUserTasks() {
     return this.tasks.filter((task) => task.userId === this.id );
@@ -25,11 +25,10 @@ export class TasksComponent {
 
   onCompleteTask(id: string){
     this.tasks = this.tasks.filter((task) => task.id !== id )
-    
   }
 
   startAddingNewTask(){
-    this.newTask = true;
+    this.isAddingTask = true;
     // this.tasks.push(
     //   { 
     //     id:  't'+ this.tasks.length++,
@@ -39,6 +38,10 @@ export class TasksComponent {
     //     dueDate: "2024-12-31"
     //   }
     // )
+  }
+
+  closeNewTaskDialog(newTaskDialog: boolean){
+    this.isAddingTask = newTaskDialog;
   }
 
 }

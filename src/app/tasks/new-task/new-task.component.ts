@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
+import { Task } from '../../task/task.model';
 
 @Component({
   selector: 'app-new-task',
@@ -8,9 +9,12 @@ import { Component } from '@angular/core';
   styleUrl: './new-task.component.css'
 })
 export class NewTaskComponent {
+  @Output() close = new EventEmitter<boolean>();
+  
 
-  saveTask(){
-    console.log("Save task")
+  closeNewTaskDialog(){
+    this.close.emit(false);
   }
+
 
 }
