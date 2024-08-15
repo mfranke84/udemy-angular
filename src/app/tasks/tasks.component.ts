@@ -40,8 +40,8 @@ export class TasksComponent {
     // )
   }
 
-  closeNewTaskDialog(newTaskDialog: boolean){
-    this.isAddingTask = newTaskDialog;
+  onCancelAddTask(){
+    this.isAddingTask = false;
   }
 
 }

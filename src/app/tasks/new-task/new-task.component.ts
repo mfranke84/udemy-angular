@@ -9,12 +9,9 @@ import { Task } from '../../task/task.model';
   styleUrl: './new-task.component.css'
 })
 export class NewTaskComponent {
-  @Output() close = new EventEmitter<boolean>();
-  
+  @Output() cancel = new EventEmitter<void>();
 
-  closeNewTaskDialog(){
-    this.close.emit(false);
+  onCancel(){
+    this.cancel.emit();
   }
-
-
 }

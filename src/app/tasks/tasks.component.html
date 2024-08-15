@@ -1,6 +1,6 @@
 <section id="tasks">
     @if (isAddingTask) {
-        <app-new-task (close)="closeNewTaskDialog($event)" />
+        <app-new-task (cancel)="onCancelAddTask()" />
     } @else {
         <header>
             <h2>{{ name }}'s Tasks</h2> 
